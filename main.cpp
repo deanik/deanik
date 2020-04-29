@@ -1,26 +1,36 @@
 #include <iostream>
 #include <fstream>
+#include <string>
+
 using namespace std;
+
 
 int main()
 {
-	ifstream plik2;
-	
-	string t[1000]; 
-	int licznik=0;
-    string a;
+    ifstream wej;
+    ofstream wyj;
+    wej.open("wej.txt");
+    wyj.open("wyj.json");
+    
+        int a =0;
+        int b [1000];
+        if (wej.good()) 
+		{
+            wyj<<"[";
+            while  (!wej.eof()) 
+			{
+            wej >> b[a++];
+            }
+            while (a!=-1) 
+			{
+                wyj << " {  \"liczba\" : \"" << b[a--]<<"\"}";
+                if(!wej.eof()){
+                wyj << ", ";
+                    }
+            }
+            wyj<<"]";
+        }
+        system("PAUSE");
+        return 0;
 
-
-    plik2.open("c:\\a.txt");  
-    if(plik2.good())
-     while(!plik2.eof())
-                {
-				plik2>>a;
-				t[licznik] = a;
-				cout<<licznik++<<": "<<a;
-				cout<<endl;
-                }
-	cout<<licznik<< endl;
-    system("PAUSE");
-    return 0;
 }
